@@ -1,103 +1,103 @@
 ---
-title: Introduction
+title: Introductie
 slug: introduction
 date: 0001/01/01
 number: 1
-contents: Learn what makes Meteor special.|Read about the story of this book.|Learn how this book is organized.
+contents: Leren wat Meteor speciaal maakt.|Lezen over het verhaal achter dit boek.|Leren hoe dit boek is ingedeeld.
 paragraphs: 35
 ---
 
-////
+Doe eens een klein experiment. Stel je voor dat je dezelfde map in twee verschillende vensters opent op je computer.
 
-////
+Klik nu binnen één van de vensters en verwijder een bestand. Is het bestand nu ook in het andere venster verdwenen?
 
-////
+Je hoeft dit experiment niet echt te doen om te weten dat dit zo is. Wanneer we iets in ons lokale bestandssysteem aanpassen is dit overal aangepast zonder dat we hiervoor callbacks moeten gebruiken of het venster moeten venieuwen. Het gebeurd gewoon.
 
-////
+Maar laten we eens nadenken over hoe dit zelfde scenario zich zou afspelen op het web. Laten we zeggen dat je hetzelfde beheerderspaneel van een WordPress site hebt geopend in twee verschillende browservensters en vervolgens een nieuw bericht hebt aangemaakt in één van deze vensters. Anders dan bij de desktop zal, hoe lang je ook wacht, het andere venster de aanpassingen niet weergeven tenzij je deze ververst.
 
-////
+Door de jaren heen zijn we gewend geraakt aan het idee dat een website iets is waar je alleen mee communiceert in korte onafhankelijke acties.
 
-////
+Maar Meteor maakt deel uit van een nieuwe lichting van frameworks en technologiën die de status quo uitdagen door het web realtime en reactief te maken.
 
-### What is Meteor?
+### Wat is Meteor?
 
-////
+Meteor is een platform, gebouwd op Node.js, om real-time web applicaties te bouwen. Meteor zit tussen de database en de user interface van je applicatie in en zorgt er voor dat beide zijn gesynchroniseerd met elkaar.
 
-////
+Omdat Meteor is gebouwd op Node.js gebruikt het JavaScript op zowel de client als de server. Daarnaast is Meteor ook in staat om code te delen tussen beide omgevingen.
 
-////
+Het resultaat hiervan is een platform dat heel krachtig is, maar tegelijkertijd ook heel eenvoudig is doordat veel van de problemen die vaak voorkomen bij de ontwikkeling van web applicaties zijn versimpeld.
 
-### Why Meteor?
+### Waarom Meteor?
 
-////
+Dus waarom zou je je tijd spenderen aan het leren van Meteor in plaats van andere web frameworks? Behalve de vele eigenschappen van Meteor, geloven wij dat het op één punt aankomt: Meteor is makkelijk te leren.
 
-////
+Meer dan andere frameworks maakt Meteor het mogelijk om een real-time web applicatie draaiend te krijgen op het web binnen enkele uren. Als je ooit eerder front-end development hebt gedaan, dan ben je al bekend met JavaScript en hoef je niet eens een nieuwe taal te leren.
 
-////
+Meteor is misschien wel of misschien niet het ideale framework voor jouw behoeften. Maar omdat je het kunt leren in een paar avonden of een weekend, is het in ieder geval een poging waard.
 
-### Why This Book?
+### Waarom dit boek?
 
-////
+De afgelopen 6 maanden hebben we gewerkt aan [Telescope](http://telesc.pe/), een open-source Meteor applicatie waarmee iedereen zijn eigen sociale nieuwssite kan opzetten (denk aan [Reddit](http://www.reddit.com/) of [Hacker news](https://news.ycombinator.com/)), waar mensen links kunnen toevoegen en hierop kunnen stemmen.
 
-////
+We hebben enorm veel geleerd tijdens het bouwen van de applicatie, maar het was niet altijd makkelijk om antwoorden op onze vragen te vinden. We hebben puzzelstukjes van verschillende bronnen in elkaar moeten passen en in veel gevallen onze eigen oplossingen moeten uitvinden. Met dit boek willen we al deze lessen delen en een simpele stap-voor-stap handleiding maken waarmee je een complete Meteor applicatie vanaf het begin kunt opbouwen.
 
-////
+De applicatie die we gaan bouwen is een versimpelde versie van Telescope, die we Microscope noemen. Tijdens het bouwen zullen we verschillende zaken aanhalen die onderdeel zijn van het bouwen van een Meteor applicatie, zoals gebruikersaccounts, Meteor collections, routing en meer.
 
-////
+Wanneer je dit boek hebt uitgelezen en verder wilt gaan, zul je de code van Telescope kunnen begrijpen, aangezien dit dezelfde patronen volgt.
 
-### About the Authors
+### Over de auteurs
 
-////
+Voor het geval je jezelf afvraagt wie wij zijn en waarom je ons zou moeten vertrouwen, wat meer achtergrondinformatie over ons.
 
 <%= image "tom-photo.jpg", "portrait" %>
 
-////
+Tom Coleman maakt deel uit van [Percolate Studio](http://percolatestudio.com/), een web development winkel waarbij de focus ligt op kwaliteit en gebruikersbeleving. Hij is ook één van de makers van [Meteorite](https://github.com/oortcloud/meteorite) en de [Atmosphere](https://atmosphere.meteor.com/) package repository, daarnaast zit hij ook achter vele andere Meteor open-source projecten (zoals de [Router](https://github.com/tmeasday/meteor-router)).
 
 <%= image "sacha-photo.jpg", "portrait" %>
 
-////
+Sacha Greif heeft gewerkt als product- en web designer met startups als [Hipmunk](http://www.hipmunk.com/) en [RubyMotion](http://www.rubymotion.com/). Hij is de maker van [Telescope](http://telesc.pe/) en [Sidebar](http://sidebar.io/) (wat is gebaseerd op Telescope) en is ook de oprichter van [Folyo](http://www.folyo.me/).
 
-### Chapters & Sidebars
+### Hoofdstukken & zijbalken
 
-////
+We willen dat dit boek nuttig is voor zowel de beginnende Meteor gebruiker als de gevorderde programmeur, dus hebben we de hoofdstukken onderverdeeld in twee categorieën: reguliere hoofdstukken (genummerd 1 tot en met 14) en zijbalken (.5 nummers).
 
-////
+Reguliere hoofdstukken zullen je door het proces van het bouwen van de applicatie heenlopen en leggen de belangrijkste stappen uit, zonder hierbij al te veel in te gaan op de details, zodat je zo snel mogelijk zelf aan de slag kunt.
 
-////
+Aan de andere kant zullen de zijbalken juist dieper ingaan op de complexiteiten van Meteor en zullen je helpen om een beter beeld te krijgen van wat er achter de schermen gebeurd.
 
-////
+Dus als je een beginner bent, voel je vrij om de zijbalken over te slaan bij de eerste leesbeurt en lees ze later nog eens terug wanneer je al wat hebt gespeeld met Meteor.
 
-### Commits & Live Instances
+### Commits & Live voorbeelden
 
-////
+Er is niet erger dan het volgen van een programmeerboek, je opeens realiseren dat je code niet meer gelijkloopt met de voorbeelden en er niks meer werkt zoals het zou moeten werken.
 
-////
+Om dit te voorkomen hebben we [een GitHub repository voor Microscope](https://github.com/SachaG/Microscope) opgezet en zullen we bij veranderingen in de code een link geven naar Git commits. Daarnaast linkt iedere commit naar een live versie van de applicatie van deze specifieke commit, zodat je deze kunt vergelijken met jouw lokale kopie. Hier is een voorbeeld van hoe zoiets er uit zal zien:
 
-<%= commit "11-2", "Display notifications in the header." %>
+<%= commit "11-2", "Notificaties in de header weergeven" %>
 
-////
+Dat we deze commits geven betekend niet dat je van de ene `git checkout` naar de volgende moet gaan. Je zult veel meer leren wanneer je de tijd neemt om de code van de applicatie zelf uit te typen.
 
-### A Few Other Resources
+### Een aantal andere hulpbronnen
 
-////
+Mocht je ooit meer willen leren over een specifiek aspect van Meteor, de [officiële documentatie van Meteor](http://docs.meteor.com/) is de beste plaats om te starten.
 
-////
+We raden [Stack Overflow](http://stackoverflow.com/questions/tagged/meteor) aan voor het oplossen van problemen of stellen van vragen en voor live hulp is er het #meteor [IRC kanaal](https://webchat.freenode.net/).
 
 <% note do %>
 
-### Do I Need Git?
+### Heb ik Git nodig?
 
-////
+Hoewel bekend zijn met Git niet persé nodig is om dit boek te volgen, raden we dit wel sterk aan.
 
-////
+Als je meer wilt weten, raden we Nick Farina's [Git is Simpler Than You Think](http://nfarina.com/post/9868516270/git-is-simpler) aan.
 
-////
+Als je nog niet bekend met Git, dan raden we ook de [GitHub for Mac](http://mac.github.com/) applicatie aan, hiermee kun je repos clonen en onderhouden zonder hiervoor de command line te hoeven gebruiken.
 
 <% end %>
 
-### Getting in Touch
+### Contact opnemen
 
-- ////
-- ////
-- ////
-- ////
+- Mocht je contact met ons willen opnemen, je kunt ons mailen op [hello@discovermeteor.com](mailto:hello@discovermeteor.com).
+- Als je een typfout of andere fout in het boek hebt gevonden, kun je ons dit laten weten door [een bug toe te voegen aan deze GitHub repo](https://github.com/DiscoverMeteor/book/issues).
+- Als je problemen hebt met de code van Microscope kun je [een bug toevoegen aan de repository van Microscope](https://github.com/DiscoverMeteor/Microscope/issues).
+- En als laatste, voor elke andere vraag kun je ook een reactie achterlaten in de zijbalk van deze applicatie.
