@@ -1,48 +1,48 @@
 ---
-title: Getting Started
-slug: getting-started
+title: Beginnen met Meteor
+slug: beginnen-met-meteor
 date: 0002/01/01
 number: 2
-contents: Install Meteor & Meteorite.|Learn about the 5 types of Meteor packages.|Setup the file structure of your Meteor app.
+contents: Het installeren van Meteor & Meteorite.|Leer over de 5 verschillende Meteor packages.|Het opzetten van de bestandsstructuur van je Meteor applicatie.
 paragraphs: 49
 ---
 
-////
+Eerste indrukken zijn belangrijk en daarom is het de bedoeling dat Meteor's installatie-proces makkelijk gaat. In de meeste gevallen is de installatie van Meteor in 5 minuten voor elkaar.
 
-////
+Om Meteor te installeren openen we een terminal en typen het volgende:
 
 ~~~bash
 $ curl https://install.meteor.com | sh
 ~~~
 
-////
+Hiermee installeren we het `meteor` programma op je systeem en zijn we klaar om Meteor te gebruiken.
 
 <% note do %>
 
-### *Not* Installing Meteor
+### Het *Niet* Installeren Van Meteor
 
-////
+Als het niet mogelijk is om Meteor op je lokale systeem te installeren (of je wil dit niet), bekijk dan eens [Nitrous.io](http://nitrous.io).
 
-////
+Nitrous.io is een dienst die je helpt om -rechtstreeks vanuit je browser- applicaties te draaien en de onderliggende code aan te passen. We hebben een [korte handleiding](https://www.discovermeteor.com/2013/10/04/meteor-nitrous/) geschreven om je op weg te helpen.
 
-////
+Volg gewoon die handleiding tot en met het onderdeel "Installing Meteor & Meteorite". Daarna kan je verder gaan met dit boek vanaf het onderdeel "Maak een simpele applicatie", uit dit hoofdstuk.
 
 <% end %>
- 
+
 ### Meteorite
 
-////
+Meteor ondersteunt nog geen 'packages' van derde partijen. Daarom hebben Tom Coleman (één van de auteurs van dit boek) en een aantal members van de Meteor-community [Meteorite]:(http://oortcloud.github.com/meteorite/) ontwikkeld. Een 'wrapper' rond Meteor. Je kan Meteorite gebruiken om verschillende 'packages' aan je Meteor applicatie toe te voegen en je kan zelfs Meteor zélf met Meteorite installeren.
 
-////
+Voor de ontwikkeling van Microscope gaan we verschillende externe 'packages' gebruiken, installeer daarom nu Meteorite.
 
-### Installing Meteorite
+### Het installeren van Meteorite
 
-////
- 
+Allereerst moet je zeker weten dat node en git geinstalleerd zijn op je systeem. Installeer ze op de standaard manier voor jouw besturingssysteem of bekijk de volgende links:
+
 - [Node download site](http://nodejs.org/download/)
 - [Git download site](http://git-scm.com/downloads)
 
-////
+Hierna installeren we Meteorite. Het is een [npm](https://npmjs.org) 'package' (Node Packaged Module, de standaard voor Node's modules), en we installeren het als volgt:
 
 ~~~bash
 $ npm install -g meteorite
@@ -50,67 +50,66 @@ $ npm install -g meteorite
 
 <% note do %>
 
-### Permission errors?
+### Rechten probleem?
 
-////
+Op sommige systemen heb je `root` toegang nodig om Meteorite te installeren. Gebruik dan `sudo -Hz om problemen te voorkomen:
 
 ~~~bash
 $ sudo -H npm install -g meteorite
 ~~~
 
-////
-
+Je kan meer over dit probleem lezen in de [Meteorite documentatie](https://github.com/oortcloud/meteorite/blob/master/README.md#permission-woes).
 <% end %>
 
-////
+Dat was het! Vanaf nu kunnen we Meteorite gebruiken om onze zaken te regelen.
 
-////
+NB: Er is nog geen Meteorite versie voor Windows, maar er is wel een [handleiding voor windows gebruikers](http://themeteorbook.com/2013/03/20/using-meteor-and-atmosphere-on-windows/).
 
 <% note do %>
 
   ### `mrt` vs `meteor`
-  
-////
-  
+
+Meteorite installeert het `mrt` programma dat we gebruiken om 'packages' in onze applicatie te installeren. Wanneer we onze server willen draaien gebruiken we echter het `meteor` commando.
+
 <% end %>
 
-### Creating a Simple App
+### Maak een simpele applicatie
 
-////
+Nu we Meteorite geinstalleerd hebben zijn we klaar om een simpele applicatie te maken. We gebruiken daarvoor het `mrt` commando van Meteorite:
 
 ~~~bash
 $ mrt create microscope
 ~~~
 
-////
+Dit commando downloadt allereerst Meteor en daarna maakt het een Meteor project voor ons aan. Als het commando uitgevoerd vind je een map, `microscope/`, met de volgende inhoud:
 
 ~~~bash
-microscope.css  
-microscope.html 
-microscope.js   
-smart.json 
+microscope.css
+microscope.html
+microscope.js
+smart.json
 ~~~
 
-////
+De applicatie die Meteor voor ons gemaakt heeft is een simpele basis applicatie die een aantal basiszaken demonstreert.
 
-////
+Ook al doet deze applicatie nog niet veel, we kunnen heb wél uitvoeren. Om de applicatie te starten gaan we terug naar de terminal en typen:
 
 ~~~bash
 $ cd microscope
 $ meteor
 ~~~
 
-////
+Ga nu met je browser naar `http://localhost:3000/` (of het equivalient `http://0.0.0.0:3000/`) en aanschouw je eerste applicatie:
 
 <%= screenshot "2-1", "Meteor's Hello World." %>
 
 <%= commit "2-1", "Created basic microscope project." %>
 
-////
+Gefeliciteerd! Je eerste Meteor applicatie draait. Om hem weer af te sluiten ga je terug naar je terminal en druk `ctrl+c`.
 
-### Adding a Package
+### Een 'package' toevoegen
 
-////
+Nu gebruiken we Meteorite om een smart package toe te voegen dat ons in staat stelt om [Bootstrap](http://getbootstrap.com/) te gebruiken in ons project:
 
 ~~~bash
 $ mrt add bootstrap
@@ -120,70 +119,72 @@ $ mrt add bootstrap
 
 <% note do %>
 
-### A Note on Packages
+### Over packages...
 
-////
+Wanneer we het -in de context van Meteor- over packages hebben, dan moeten we wat specifieker zijn.
+De packages kunnen we onderverdelen in 5 basistypes:
 
-- ////
-- ////
-- ////
-- ////
-- ////
+- De Meteor kern is opgedeeld in verschillende **core packages**. Zij maken onderdeel uit van élke Meteor applicatie, en eigenlijk is dat genoeg om te weten.
+- Meteor **smart packages** zijn een groep van [ongeveer 37](http://docs.meteor.com/#packages) packages (voer `meteor list` uit om de volledige lijst te zien) die je meegeleverd krijgt met Meteor en die je optioneel aan je eigen applicatie toe kan voegen. Je hoeft Meteorite niet te gebruiken om ze te installeren, dat kan ook zo: `meteor add package-naam`.
+- **Local packages** zijn lokale packages die je zélf gemaakt hebt. Je zet ze in de `/packages` map binnen je Meteor applicatie. Ook om deze te gebruiken heb je Meteorite niet nodig.
+- **Atmosphere smart packages** zijn Meteor packages gemaakt door derden en terug te vinden op [Atmosphere](http://atmosphere.meteor.com). Je hebt Metorite nodig om deze te importeren en gebruiken.
+- **NPM packages** (Node Packaged Modules) zijn Node.js packages. Ze zijn niet direct geschikt om met Meteor samen te werken, maar ze *kunnen* wel gebruikt worden door de andere package-types zoals hierboven genoemd.
 
 <% end %>
 
-### The File Structure of a Meteor App
+### De bestandsstructuur van een Meteor applicatie
 
-////
+Voordat we beginnen met programmeren moeten we ons project netjes opzetten. Om er zeker van te zijn dat we starten met een schone lei open je de `microscope` map en verwijderd de volgende bestanden: `microscope.html`, `microscope.js` en `microscope.css`.
 
-////
+Daarna maak je de volgende 5 mappen aan in de `/microscope` map: `/client`, `/server`, `/public`, `/lib` en `/collections`. Maak in de map `/client` de volgende lege bestanden aan: `main.html` en `main.js`. Het maakt niet uit dat de applicatie nu niet meer werkt, in de volgende hoofdstukken vullen we deze bestanden.
 
-////
+Het is belangrijk om te weten dat een aantal van deze mappen 'speciaal' zijn. Meteor hanteert de volgende regels:
 
-- ////
-- ////
-- ////
-- ////
-- ////
-- ////
+- Code in de `/server` map, wordt alleen op de server uitgevoerd.
+- Code in de `/client` map, wordt alleen op de client uitgevoerd.
+- Code in andere mappen wordt zowel op de client als op de server uitgevoerd.
+- Bestanden in de `/lib` map worden geladen vóór alle andere bestanden.
+- Elk `main.*` bestand wordt geladen ná alle andere bestanden.
+- Statische bestanden (afbeeldingen, fonts, etc...) horen in de `/public` map.
 
-////
+Ook al houdt Meteor zich aan bovenstaande regels, ze worden niet afgedwongen. Hoewel wij aanraden om bovenstaande structuur aan te houden, is het voor Meteor geen vereiste.
 
-////
+We raden aan om de [officiële Meteor documentatie](http://docs.meteor.com/#structuringyourapp) te bekijken als je hier meer over wilt weten.
 
 <% note do %>
 
 ### Is Meteor MVC?
 
-////
+Als je eerder met andere frameworks (zoals Ruby on Rails) hebt gewerkt dan vraag je je wellicht af of Meteor het MVC-model respecteert.
 
-////
+Het korte antwoord: nee. In tegenstelling tot Rails legt Meteor je geen voorbepaald stramien op. In dit boek schrijven we onze programmeer code op een manier die voor ons het meest logisch lijkt zonder dat we ons te druk maken om acroniemen.
 
 <% end %>
 
-### No public?
+### Geen public?
 
-////
+Ok, we zijn niet helemaal eerlijk geweest. Voor Microscope hebben we eigenlijk geen `/public` map nodig omdat Microscope helemaal geen statische bestanden bevat. Omdat de meeste Meteor applicaties echter wel eens een afbeelding gebruiken vonden we het toch belangrijk om het te bespreken.
 
-////
+Wellicht is het je ook opgevallen dat er een onzichtbare `.meteor` map bestaat in onze project-map. Hier slaat Meteor zijn code op, en hier zélf dingen in aanpassen is dus ook niet aan te raden. Eigenlijk hebben we niks te zoeken in deze directory.
+De enige uitzonderingen zijn de `/.meteor/packages` en `/.meteor/release` bestanden die gebruikt worden om bij te houden welke smart packages en meteor versie je gebruikt. Wanneer je packages toevoegt of de Meteor versie verandert, zul je zien dat de inhoud van deze bestanden wijzigt.
 
 <% note do %>
 
-### Underscores vs CamelCase
+### Underscores versus CamelCase
 
-////
+Het enige wat we te zeggen in het Underscores (mijn_variabele) versus CamelCase (MijnVariabele) debat is dit: "Het maakt niet uit wat je kiest, maar wees consequent."
 
-////
+In dit boek gebruiken we CamelCase omdat dit het meest gebruikt wordt bij JavaScript (we noemen het namelijk ook geen java_script!).
 
-////
+We maken alleen een uitzondering op deze regel voor bestandsnamen (daar gebruiken we underscores: bestand_x.js) en voor CSS classes (daar gebruiken we streepjes: .mijn-class). Dit doen we omdat underscores het meest gebruikt worden in het bestandssysteem en omdat de CSS-syntax zelf ook al veel streepjes gebruikt (`font-family`, `text-align`, etc...).
 
 <% end %>
 
-### Taking Care of CSS
+### Wat doen we met CSS?
 
-////
+Dit boek gaat niet over CSS. We gaan je dus niet afremmen of vervelen met Styling-details. We hebben besloten om de volledige stylesheet beschikbaar te maken vanaf het begin, zodat je je er niet druk om hoeft te maken.
 
-////
+CSS wordt automatisch ingeladen en verkleind door Meteor. In tegenstelling tot andere statische bestanden wordt het daarom in de `/client` directory geplaatst en niet in `/public`. Maak een `/client/stylesheets/` map aan met daarin een bestand `style.css` met de volgende inhoud:
 
 ~~~css
 .grid-block, .main, .post, .comments li, .comment-form {
@@ -287,9 +288,9 @@ body {
 
 <% note do %>
 
-### A Note on CoffeeScript
+### Een woordje over CoffeeScript
 
-////
+In dit boek gebruiken we JavaScript. Als je echter de voorkeur aan CoffeeScript geeft dan is dat geen probleem voor Meteor. Voeg gewoon het CoffeeScript package toe aan je applicatie:
 
 `mrt add coffeescript`
 
