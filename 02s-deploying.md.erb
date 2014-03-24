@@ -8,93 +8,93 @@ contents: Learn how to deploy on Meteor.com.|Learn how to deploy on Modulus.|Lea
 paragraphs: 46
 ---
 
-////
+Sommige mensen werken het liefst in stilte aan een project totdat het perfect werkt. Anderen kunnen niet wachten om hun werk aan de wereld te laten zien.
 
-////
+Als je bij de eerste groep hoort en nu nog liever lokaal blijft werken, sla dit hoofdstuk voor nu dan vooral over. Maar als je bij de tweede groep hoort en je graag wil leren hoe je je Meteor app kunt deployen, lees dan door.
 
-////
+We laten een aantal verschillende manieren zien om een Meteor app te deployen. Kies zelf de manier die het beste past bij de fase waar je project nu in zit, of je nu wekrt aan Microscope of een andere Meteor app. Aan de slag!
 
 <% note do %>
 
-### Introducing Sidebars
+### Over Sidebars
 
-////
+Dit is een **sidebar** hoofdstuk. Sidebars gaan dieper in op algemene Meteor onderwerpen, onafhankelijk van de rest van het boek.
 
-////
+Als je liever eerst verder gaat met het bouwen van Microscope, sla dit dan nu over en lees het later nog eens door.
 
 <% end %>
 
-### Deploying On Meteor
+### Deployen Op Meteor
 
-////
+Deployen op een Meteor subdomein (bijv. `http://myapp.meteor.com`) is de eenvoudigste optie en de eerste die we gaan uitvoeren. Deze optie kan handig zijn om je app in een vroege fase alvast aan anderen te laten zien, of om snel een staging server in te richten.
 
-////
+Deployen naar Meteor is makkelijk. Open je terminal, ga naar je Meteor app directory en typ:
 
 ~~~bash
 $ meteor deploy myapp.meteor.com
 ~~~
 
-////
+Vervang uiteraard "myapp" door een naam naar keuze, bij voorkeur een naam die nog niet in gebruik is. Als je naam al bezet is, kan Meteor je vragen om een password. Als dit gebeurt, annuleer het deployen met `ctrl+c` en probeer het opnieuw met een andere naam.
 
-////
+Als alles goed gaat, kun je enkele seconden later je app bezoeken op `http://myapp.meteor.com`.
 
-### Password Protection
+### Een Password Instellen
 
-////
+Standaard staan er geen restricties ingrsteld op Meteor subdomeinen. Iedereen kan een domeinnaam naar keuze gebruiken en bestaande apps overschrijven. Daarom wil je waarschijnlijk een password instellen op je domeinnaam met de `-p` optie, zoals hieronder te zien:
 
 ~~~~bash
 $ meteor deploy myapp.meteor.com -p
 ~~~~
 
-////
+Meteor vraagt je dan om een password in te stellen. Vanaf dat moment is dit password vereist bij elke volgende deploy van deze app.
 
-////
+Zie [de officiële documentatie](http://docs.meteor.com/#deploying) voor meer informatie over zaken als toegang krijgen tot je app's online database of het instellen van een andere domeinnaam voor je app.
 
-### Deploying On Modulus
+### Deployen Op Modulus
 
-////
+[Modulus](https://modulus.io/) is een goede optie om NodeJS apps te deployen. Het is een van de weinige PaaS (platform-as-a-service) providers die officieel Meteor ondersteunen, en er zijn al vrij veel mensen die hier Meteors apps in productie draaien.
 
 <% note do %>
 
 ### Demeteorizer
 
-////
+Modulues biedt de open-source tool [demeteorizer](https://github.com/onmodulus/demeteorizer) aan om je Meteor app om te zetten in een standaard NodeJS app.
 
 <% end %>
 
-////
+Start met het [maken van een account](https://modulus.io/register). Om je app te kunnen deployen, installeer de Modulus command line tool:
 
 ~~~bash
 $ npm install -g modulus
 ~~~
 
-////
+En log daarna in met:
 
 ~~~bash
 $ modulus login
 ~~~
 
-////
+We maken vervolgens een Modulus project aan (dit kan ook via het web dashboard van Modulus):
 
 ~~~bash
 $ modulus project create
 ~~~
 
-////
+De volgende stap is het maken van een MongoDB database voor onze app. Dit kan met [Modules zelf](https://modulus.io/codex/database/getting_started), [MongoHQ](https://www.mongohq.com/) of een andere MongoDB cloud provider.
 
-////
+Zodra we onze MongoDB database hebben gemaakt, kunnen de de `MONGO_URL` ophalen vanuit Modulus' web UI (ga naar Dashboard > Databases > Select your database > Administration). Gebruik deze URL als volgt om je app de configureren:
 
 ~~~bash
 $ modulus env set MONGO_URL "mongodb://<user>:<pass>@mongo.onmodulus.net:27017/<database_name>"
 ~~~
 
-////
+Nu kunnen we onze app deploten. Doe dit als volgt:
 
 ~~~bash
 $ modulus deploy
 ~~~
 
-////
+We hebben nu onze app succesvol op Modulus gezet. Zie [de Modulus documentatie](https://modulus.io/codex/projects) voor meer informatie over toegang tot logs, je eigen domeinnaam instellen en SSL.
 
 ### Meteor Up
 
