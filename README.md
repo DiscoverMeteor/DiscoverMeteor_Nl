@@ -1,1 +1,1 @@
-This is an outline of [Discover Meteor](http://discovermeteor.com).
+Dit is een overzicht van [Discover Meteor](http://discovermeteor.com).
