@@ -8,18 +8,18 @@ contents: Leer hoe je Github gebruikt om het boek te kunnen volgen.
 paragraphs: 32
 ---
 
-[GitHub](https://github.com/) is een sociaal platform voor open-source projecten, gebaseerd rond het [Git](http://git-scm.com/) versie controle systeem, en is hoofdzakelijk bedoeld om het makkelijk te maken om code te delen en samen te werken aan projecten. Maar het is ook een fantastische studie tool. In deze sidebar
+[GitHub](https://github.com/) is een sociaal platform voor open-source projecten, gebaseerd rond het [Git](http://git-scm.com/) versie controle systeem, en is hoofdzakelijk bedoeld om het makkelijk te maken om code te delen en samen te werken aan projecten. Maar het is ook een fantastische studietool. In deze sidebar
 gaan we een aantal manieren behandelen hoe je GitHub kunt gebruiken om het boek *Discover Meteor* te kunnen volgen.
 
 Deze sidebar gaat ervan uit dat je niet bekend bent met Git en GitHub. Als je je met beiden al comfortabel voelt, voel je dan vrij om door te gaan met het volgende hoofdstuk!
 
 ### Wees Committed
 
-De bases van het werken met een git repository is een *commit*. Je kunt een commit zien als een momentopname van de status van je codebase op een gegeven moment in de tijd.
+De basis van het werken met een git repository is een *commit*. Je kunt een commit zien als een momentopname van de status van je codebase op een gegeven moment in de tijd.
 
-In plaats van het simpelweg geven van de uitgewerkte code van Microscope, hebben we onderweg momentopnamen vastgelegd van iedere stap, en kun je deze allemaal online zien op GitHub. 
+In plaats van het simpelweg geven van de uitgewerkte code van Microscope, hebben we onderweg momentopnamen vastgelegd van iedere stap, en kun je deze allemaal online zien op GitHub.
 
-Bijvoorbeeld, dit is wat [de laatste commit van het vorige hoofdstuk](https://github.com/DiscoverMeteor/Microscope/commit/chapter3-2) eruit ziet:
+Bijvoorbeeld, dit is hoe [de laatste commit van het vorige hoofdstuk](https://github.com/DiscoverMeteor/Microscope/commit/chapter3-2) eruit ziet:
 
 <%= screenshot "s3-1", "Een Git commit zoals getoond op GitHub." %>
 
@@ -40,7 +40,7 @@ Nu hebben we het eerste gebruik van GitHub gezien: bekijk in een oogopslag wat e
 
 ### Bekijk een Commit's Code
 
-Git's commit overzicht toont ons de aanpassingen inbegrepen in deze commit, maar soms wil je kijken naar bestanden die *niet* aangepast zijn, om er zeker van te zijn
+Git's commit overzicht toont ons de aanpassingen inbegrepen in deze commit, maar soms wil je kijken naar bestanden die *niet* aangepast zijn, om zeker te zijn
 hoe de code eruit zou moeten zien in dit stadium van het proces.
 
 En weer maakt GitHub het waar voor ons. Wanneer je op een commit pagina bent, klik je op de **Browse code** knop:
@@ -56,19 +56,19 @@ dat de bestandsstructuur anders is:
 
 <%= screenshot "s3-7", "De repository op commit 14-2." %>
 
-### Locale toegang tot een commit
+### Lokale toegang tot een commit
 
 We hebben net gezien hoe je een commit's gehele code online kunt bekijken op GitHub. Maar wat als je hetzelfde lokaal wilt doen? Je wilt de app bijvoorbeeld lokaal runnen
 op een specifieke commit om te zien hoe het gedrag zou moeten zijn op dit punt in het proces.
 
-Om dit te doen, maken we onze eerste stappen (in dit boek althans) met de `git` command line utility. Om te beginnen [moet je er zeker van zijn dat je Git hebt geinstalleerd](http://git-scm.com/downloads) Dan kun je de Microscope repository **klonen** (met andere woorden, een lokale kopie downloaden):
+Om dit te doen, maken we onze eerste stappen (in dit boek althans) met de `git` command line utility. Om te beginnen [moet je er zeker van zijn dat je Git hebt geinstalleerd](http://git-scm.com/downloads) Dan kun je de Microscope repository **clonen** (met andere woorden, een lokale kopie downloaden):
 
 ~~~bash
 $ git clone git@github.com:DiscoverMeteor/Microscope.git github_microscope
 ~~~
 
-Het `github_microscope` aan het einde van de regel is simpelweg de naarm van de lokale repository waar je de app in kloont. Er van uitgaande dat je al een bestaande
-'microscope' folder hebt, kun je iedere andere naam kiezen (het hoeft niet dezelfde naam te zijn als de GitHub repo).
+Het `github_microscope` aan het einde van de regel is simpelweg de naam van de lokale repository waar je de app in kloont. Er van uitgaande dat je al een bestaande
+'microscope' directory hebt, kun je iedere andere naam kiezen (het hoeft niet dezelfde naam te zijn als de GitHub repo).
 
 Laten we `cd`-en naar de repository zodat we de `git` command line utility kunnen gaan gebruiken:
 
@@ -76,13 +76,13 @@ Laten we `cd`-en naar de repository zodat we de `git` command line utility kunne
 $ cd github_microscope
 ~~~
 
-Nu dat we de repository van GitHub gekloond hebben, hebben we *alle* code van de app gedownload, wat betekend dat we kijken naar de code van de allerlaatste commit ooit.
+Nu we de repository van GitHub gekloond hebben, hebben we *alle* code van de app gedownload, wat betekent dat we kijken naar de code van de allerlaatste commit ooit.
 
 Gelukkig is er een manier om terug te gaan in de tijd en een specifieke commit "uit te checken" zonder de andere commits te beïnvloeden. Laten we het proberen:
 
 ~~~bash
 $ git checkout chapter3-1
-NNote: checking out 'chapter3-1'.
+Note: checking out 'chapter3-1'.
 
 You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
@@ -96,13 +96,13 @@ do so (now or later) by using -b with the checkout command again. Example:
 HEAD is now at a004b56... Added basic posts list template and static data.
 ~~~
 
-Git informeert ons dat we ons in de "detached HEAD" status bevinden, wat voor zover het Git aangaat betekend, dat we oude commits kunnen bekijken maar niet kunnen aanpassen. Je kunt het zien als een soort tovenaar die het verleden bekijkt in een glazen bol.
+Git informeert ons dat we ons in de "detached HEAD" status bevinden, wat voor zover het Git aangaat betekent, dat we oude commits kunnen bekijken maar niet kunnen aanpassen. Je kunt het zien als een soort tovenaar die het verleden bekijkt in een glazen bol.
 
-(Let op dat Git ook commando's heeft welke je commits uit het verleden laten *aanpassen*. Dit is meer als een tijdsreiziger die terug gaat in de tijd en op een vlinder stapt, maar het is buiten de scope van deze korte introductie.)
+(Let op dat Git ook commando's heeft welke je commits uit het verleden laten *aanpassen*. Dit is meer als een tijdreiziger die terug gaat in de tijd en op een vlinder stapt, maar het is buiten de scope van deze korte introductie.)
 
-De reden dat je in staat was om simpelweg `chapter3-1` te typen, is omdat we alle Microscope commits vooraf gelabeld hebben met de correcte hoofdstuk boekenlegger. Als dit niet zo zou zijn, dan zou je eerst de **hash** van de commit moeten opzoeken, of de unieke identificatie.
+De reden dat je in staat was om simpelweg `chapter3-1` te typen, is omdat we alle Microscope commits vooraf gelabeld hebben met het correcte hoofdstuknummer. Als dit niet zo zou zijn, dan zou je eerst de **hash** van de commit moeten opzoeken, of de unieke identificatie.
 
-En weer maakt GiHub het leven makkelijker. Je kunt een hash van een commit rechts onder in de hoek van de blauwe commit header box vinden, zoals hier getoond:
+En weer maakt GitHub het leven makkelijker. Je kunt een hash van een commit rechts onder in de hoek van de blauwe commit header box vinden, zoals hier getoond:
 
 <%= screenshot "s3-4", "Een commit hash vinden." %>
 
@@ -114,22 +114,22 @@ Previous HEAD position was a004b56... Added basic posts list template and static
 HEAD is now at c7af59e... Augmented the postsList route to take a limit
 ~~~
 
-En tenslotte, wat als we willen stoppen met kijken in onze glazen bol en terug willen komen naar het heden? We kunnen tegen Git zeggen dat we de **master** branch willen uitchecken:
+En tenslotte, wat als we willen stoppen met kijken in onze glazen bol en terug willen naar het heden? We kunnen tegen Git zeggen dat we de **master** branch willen uitchecken:
 
 ~~~bash
 $ git checkout master
 
-Merk op dat je de app ook kunt runnen met het `meteor` commando op ieder punt in het proces, zelf wanneer we in de "detached HEAD" status zijn. Je zult waarschijnlijk eerst een snelle `mrt update` moeten uitvoeren als Meteor klaagt over ontbrekende pakketten, omdat pakketten code niet in de Microscope repo is opgeslagen.
+Weet dat je de app ook kunt runnen met het `meteor` commando op ieder punt in het proces, zelfs wanneer we in de "detached HEAD" status zijn. Je zult waarschijnlijk eerst een snelle `mrt update` moeten uitvoeren als Meteor klaagt over ontbrekende pakketten, omdat pakketten code niet in de Microscope repo is opgeslagen.
 
 ### Historisch Perspectief
 
-Hier is een ander gebruikelijk scenario: je bent naar een bestand aan het kijken en merkt wat aanpassingen op die je nog niet eerder hebt gezien. Het ding is, je kunt je niet herinneren *wanneer* het bestand aangepast is. Je kunt simpelweg een voor een naar iedere commit kijken totdat je de juiste vind, maar er is een gemakkelijkere weg met dank aan GitHub's **History** functie.
+Hier is een ander gebruikelijk scenario: je bent naar een bestand aan het kijken en merkt wat aanpassingen op die je nog niet eerder hebt gezien. Het probleem is, je kunt je niet herinneren *wanneer* het bestand aangepast is. Je kunt simpelweg een voor een naar iedere commit kijken totdat je de juiste vindt, maar er is een gemakkelijkere weg met dank aan GitHub's **History** functie.
 
-Ga eens naar een van je repository bestanden op GitHub. Lokaliseer de "History" knop:
+Ga eens naar een van je repository bestanden op GitHub. Zoek naar de "History" knop:
 
 <%= screenshot "s3-8", "GitHub's History knop." %>
 
-Je hebt nu een mooi overzicht van alle commits welke dit bestand aangaan:
+Je hebt nu een mooi overzicht van alle commits die dit bestand aangaan:
 
 <%= screenshot "s3-9", "Toon de geschiedenis van een bestand." %>
 
@@ -139,7 +139,7 @@ Om het af te ronden, laten we eens kijken naar **Blame**:
 
 <%= screenshot "s3-10", "GitHub's Blame knop." %>
 
-Dit mooie overzicht toont ons regel voor regel wie het bestand heeft aangepast en in welke commits (met andere woorden, wie is er verantwoordelijk dat iets niet meer werkt):
+Dit mooie overzicht toont ons regel voor regel wie het bestand heeft aangepast en in welke commits (met andere woorden, wie is er verantwoordelijk voor dat iets niet meer werkt):
 
 <%= screenshot "s3-11", "GitHub's Blame overzicht." %>
 
