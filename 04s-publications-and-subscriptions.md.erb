@@ -1,10 +1,10 @@
 ---
-title: Publications and Subscriptions
+title: Publicaties en Abonnementen
 slug: publications-and-subscriptions
 date: 0004/01/02
 number: 4.5
 sidebar: true
-contents: Understand how publications and subscriptions work.|Learn what the default Autopublish package does.|See a few more examples of publication patterns.
+contents: Begrijp hoe publicaties en abonnementen werken.|Leer wat het standaard pakket Autopublish doet.|Bekijk een paar meer voorbeelden van publicatie patronen.
 paragraphs: 52
 ---
 
@@ -14,7 +14,7 @@ paragraphs: 52
 
 ////
 
-### The Olden Days
+### Vroeger
 
 ////
 
@@ -26,7 +26,7 @@ paragraphs: 52
 
 ////
 
-### The Meteor Way
+### De Meteor Manier
 
 ////
 
@@ -38,7 +38,7 @@ paragraphs: 52
 
 ////
 
-### Publishing
+### Publiceren
 
 ////
 
@@ -59,7 +59,7 @@ paragraphs: 52
 ~~~js
 // on the server
 Meteor.publish('posts', function() {
-  return Posts.find({flagged: false}); 
+  return Posts.find({flagged: false});
 });
 ~~~
 
@@ -75,7 +75,7 @@ Meteor.publish('posts', function() {
 
 <% end %>
 
-### Subscribing
+### Abonneren
 
 ////
 
@@ -103,7 +103,7 @@ Meteor.subscribe('posts', 'bob-smith');
 
 ////
 
-### Finding
+### Zoeken
 
 ////
 
@@ -136,11 +136,11 @@ Template.posts.helpers({
 
 ////
 
-### Publishing Full Collections
+### Publiceer Volledige Collecties
 
 ////
 
-~~~js 
+~~~js
 Meteor.publish('allPosts', function(){
   return Posts.find();
 });
@@ -150,11 +150,11 @@ Meteor.publish('allPosts', function(){
 
 ////
 
-### Publishing Partial Collections
+### Publiceer Gedeeltelijke Collecties
 
 ////
 
-~~~js 
+~~~js
 Meteor.publish('somePosts', function(){
   return Posts.find({'author':'Tom'});
 });
@@ -164,7 +164,7 @@ Meteor.publish('somePosts', function(){
 
 <% note do %>
 
-### Behind The Scenes
+### Achter De Schermen
 
 ////
 
@@ -182,7 +182,7 @@ Meteor.publish('somePosts', function(){
 
 <% end %>
 
-### Publishing Partial Properties
+### Publiceer Gedeeltelijke Eigenschappen
 
 ////
 
@@ -208,7 +208,7 @@ Meteor.publish('allPosts', function(){
 });
 ~~~
 
-### Summing Up
+### Samengevat
 
 ////
 
