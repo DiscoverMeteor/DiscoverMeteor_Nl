@@ -37,28 +37,27 @@ Laten we eens kijken wat Meteor zo speciaal maakt als we deze vergelijken. Zoals
 
 Dit is als een winkel bediende die niet alleen het juiste boek voor je vind, maar je ook naar huis volgt om het boek 's avonds voor te lezen (toegegeven, dat klinkt een beetje eng).
 
-Deze architectuur laat Meteor een hoop koele dingen doen
-This architecture lets Meteor do many cool things, chief among them what Meteor calls [database everywhere](http://docs.meteor.com/#sevenprinciples). Simply put, Meteor will take a subset of your database and *copy it to the client*.
+Deze architectuur laat Meteor een hoop coole dingen doen, met de baas onder hen wat Meteor [database everywhere](http://docs.meteor.com/#sevenprinciples) noemt. Simpel gezegd, Meteor neemt een subset van je database en *kopieert deze naar de client*.
 
-This has two big implications: first, instead of sending HTML code to the client, a Meteor app will send **the actual, raw data** and let the client deal with it ([data on the wire](http://docs.meteor.com/#sevenprinciples)). Second, you'll be able to **access that data instantaneously** without having to wait for a round-trip to the server ([latency compensation](http://docs.meteor.com/#sevenprinciples)).
+Dit heeft twee grote gevolgen: als eerste, inplaats van HTML code naar de client te sturen, stuurt een Meteor app **de eigenlijke, ruwe data** en laat de client dit afhandelen ([data on the wire](http://docs.meteor.com/#sevenprinciples)). Ten tweede, stelt dit je in staat om **deze data direct te benaderen** zonder te hoeven wachten op een ritje naar de server ([latency compensation](http://docs.meteor.com/#sevenprinciples)).
 
-### Publishing
+### Publiseren
 
-An app's database can contain tens of thousands of documents, some of which might even be private or sensitive. So we obviously shouldn't just mirror our whole database on the client, for security and scalability reasons.
+Een app's database can tien duizenden documenten bevatten, waarvan sommigen zelfs prive of gevoelig kunnen zijn. Dus we kunnen uiteraard niet de hele database zomaar naar de client sturen, voor zowel veiligheids als schaalbaarheids redenen.
 
-So we'll need a way to tell Meteor which **subset** of data can be sent to the client, and we'll accomplish this through a **publication**.
+Dus we hebben een manier nodig om Meteor te vertellen welke **subset** van data naar de client gestuurd kan worden, en we bereiken dit door middel van een **publicatie**.
 
-Let's go back to Microscope. Here are all of our app's posts sitting in the database:
+Laten we teruggaan naar Microscope. Hier zijn al onze berichten die in de database zitten:
 
-<%= diagram "collections-1", "All the posts contained in our database.", "pull-center" %>
+<%= diagram "collections-1", "Alle berichten opgeslagen in onze database.", "pull-center" %>
 
-Although that feature admittedly does not actually exist in Microscope, we'll imagine that some of our posts have been flagged for abusive language. Although we want to keep them in our database, they should not be made available to users (i.e. sent to a client).
+Hoewel deze functie weliswaar niet echt bestaat in Microscope, stellen we ons voor dat sommigen van onze berichten gemarkeerd zijn voor beledigende taal. Hoewl we deze berichten in onze database willen houden, dienen ze niet beschikbaar te worden gemaakt voor onze gebruikers (d.w.z. naar een client verstuurd).
 
-Our first task will be telling Meteor what data we *do* want to send to the client. We'll tell Meteor we only want to **publish** unflagged posts:
+Ons eerste gesrpek zal Meteor vertellen welke data we *wel* naar de client willen versturen. Later vertellen we Meteor dat we alleen ongemarkeerde berichten willen **publiceren**.
 
-<%= diagram "collections-2", "Excluding flagged posts.", "pull-center" %>
+<%= diagram "collections-2", "Gemarkeerde berichten uitsluiten.", "pull-center" %>
 
-Here's the corresponding code, which would reside on the server:
+Hier is de corresponderende code, welke op de server verblijft:
 
 ~~~js
 // on the server
@@ -67,7 +66,7 @@ Meteor.publish('posts', function() {
 });
 ~~~
 
-This ensures there is **no possible way** that a client will be able to access a flagged post. This is exactly how you'd make a Meteor app secure: just ensure you're only publishing data you want the current client to have access to.
+Dit verzekert dat er **geen enkele manier mogelijk** is dat een client toegang kan verkrijgen tot een gemarkeerd bericht. Dit is precies hoe je een Meteor app veilig maakt: zorg er gewoon voor dat je allen data publiceert waar je de huidige client toegang tot wilt geven.
 
 <% note do %>
 
