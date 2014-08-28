@@ -72,23 +72,23 @@ Dit verzekert dat er **geen enkele manier mogelijk** is dat een client toegang k
 
 ### DDP
 
-Fundamentally, you can think of the publication/subscription system as a funnel that transfers data from a server-side (source) collection to a client-side (target) collection.
+In de basis, kun je aan het publicatie/abonnementen systeem denken als een trechter die data vanaf de server (bron) collectie naar een client (doel) collectie stuurt.
 
-The protocol that is spoken over that funnel is called **DDP** (which stands for Distributed Data Protocol). To learn more about DDP, you can watch [this talk from The Real-time Conference](http://2012.realtimeconf.com/video/matt-debergalis) by Matt DeBergalis (one of the founders of Meteor), or [this screencast](http://www.eventedmind.com/posts/meteor-subscriptions-and-ddp) by Chris Mather that walks you through this concept in a little more detail.
+Het protocol wat door deze trechter wordt gesproken noemen we **DDP** (wat staat voor Distributed Data Protocol). Om meer over DDP te leren, kun je [deze sessie van The Real-time Conferentie](http://2012.realtimeconf.com/video/matt-debergalis) door Matt DeBergalis (een van de stichters van Meteor) bekijken, of [deze screencast](http://www.eventedmind.com/posts/meteor-subscriptions-and-ddp) door Chris Mahter welke dit contept in meer wat detail beschrijft.
 
 <% end %>
 
-### Subscribing
+### Abonneren
 
-Even though we want to make any non-flagged post available to clients, we can't just send thousands of posts at once. We need a way for clients to specify which subset of that data they need at any particular moment, and that's exactly where **subscriptions** come in.
+Ondanks dat we alle niet gemarkeerde berichten voor de clients beschikbaar willen maken, kunnen we niet zomaar duizenden berichten in een keer sturen. We hebben een manier nodig voor clients om te specificeren welke subset van deze data zij op een specifiek moment nodig hebben. En dat is precies waar we **abonnementen** nodig hebben.
 
-Any data you subscribe to will be **mirrored** on the client thanks to Minimongo, Meteor's client-side implementation of MongoDB.
+Elke data waarop je je abonneert wordt **gespiegeld** op de client met dank aan Minimongo, Meteor's client-side implementatie van MongoDG.
 
-For example, let's say we're currently browsing Bob Smith's profile page, and only want to display *his* posts.
+Laten we bijvoorbeeld zeggen dat we op dit moment de profiel pagina van Bob Smith aan het bekijken zijn en we alleen *zijn* berichten willen zien.
 
-<%= diagram "collections-3", "Subscribing to Bob's posts will mirror them on the client.", "pull-center" %>
+<%= diagram "collections-3", "Abonneren op Bob's berichten zal deze spiegelen op de client.", "pull-center" %>
 
-First, we would amend our publication to take a parameter:
+Als eerste, wijzigen we onze publicatie om een parameter te kunen ontvangen;
 
 ~~~js
 // on the server
@@ -97,22 +97,22 @@ Meteor.publish('posts', function(author) {
 });
 ~~~
 
-And we would then define that parameter when we *subscribe* to that publication in our app's client-side code:
+And zouden we deze parameter definieren wanneer we ons *abonneren* op die publicatie in de client-side code van onze app:
 
 ~~~js
 // on the client
 Meteor.subscribe('posts', 'bob-smith');
 ~~~
 
-This is how you make a Meteor app scalable client-side: instead of subscribing to *all* available data, just pick and choose the parts that you currently need. This way, you'll avoid overloading the browser's memory no matter how big your server-side database is.
+Dit is hoe je een Meteor app schaalbaar maakt aan de client kant: inplaats van te abonneren op *alle* beschikbare data, kiez je alleen de onderdelen die je op dit moment nodig hebt. Op deze manier, voorkom je het overbelasten van het geheugen van de browser, ongeacht hoe groot je server-side datbase is.
 
-### Finding
+### Zoeken
 
-Now Bob's posts happen to be spread across multiple categories (for example: “JavaScript”, ”Ruby”, and ”Python”). Maybe we still want to load all of Bob's posts in memory, but we only want to display those from the “JavaScript" category right now. This is where “finding” comes in.
+Nu zijn Bob's berichten toevallig verspreid over meerdere categorien (bijvoorbeeld: "JavaScript", "Ruby" en "Python"). Misschien willen we nog steeds alle berichten van Bob in het geheugen laden, maar willen we alleen diegene tonen die de categorie "JavaScript" hebben op dit moment. Dat is waar "zoeken" nuttig is.
 
-<%= diagram "collections-4", "Selecting a subset of documents on the client.", "pull-center" %>
+<%= diagram "collections-4", "Selecteer een subset van documenten op de client.", "pull-center" %>
 
-Just like we did on the server, we'll use the `Posts.find()` function to select a subset of our data:
+Net zoals we op de server deden, gebruiken we de `Post.find()` functie om een subset van onze data te selecteren:
 
 ~~~js
 // on the client
@@ -123,13 +123,13 @@ Template.posts.helpers({
 });
 ~~~
 
-Now that we have a good grasp of what role publications and subscriptions play, let's dig in deeper and review a few common implementation patterns.
+Nu dat we een goed begrip hebben van wat voor rol publicaties en abonnementen spelen, kunnen we wat dieper graven en een paar algemene inplementatie patronen.
 
 ### Autopublish
 
-If you create a Meteor project from scratch (i.e using `meteor create`), it will automatically have the `autopublish` package enabled. As a starting point, let's talk about what that does exactly.
+Als je vanuit niets een Meteor project maakt (d.w.z. met `meteor create`), heeft deze automatisch het `autopublish` package aanstaan. Laten we er van uitgangspunt eens bekijken wat dit exact doet.
 
-The goal of `autopublish` is to make it very easy to get started coding your Meteor app, and it does this by automatically mirroring _all data_ from the server on the client, thus taking care of publications and subscriptions for you.
+Het doel van `autopublish` is om het erg makkelijk te maken om je te laten starten met het maken van je Meteor app, en het spiegeld automatisch _alle data- van de server naar de client, dus het verzorgt de publicaties en abonnementen voor je.
 
 <%= diagram "autopublish", "Autopublish", "pull-center"%>
 
