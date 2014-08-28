@@ -97,7 +97,7 @@ Meteor.publish('posts', function(author) {
 });
 ~~~
 
-And zouden we deze parameter definieren wanneer we ons *abonneren* op die publicatie in de client-side code van onze app:
+En zouden we deze parameter definieren wanneer we ons *abonneren* op die publicatie in de client-side code van onze app:
 
 ~~~js
 // on the client
@@ -133,15 +133,15 @@ Het doel van `autopublish` is om het erg makkelijk te maken om je te laten start
 
 <%= diagram "autopublish", "Autopublish", "pull-center"%>
 
-How does this work? Suppose you have a collection called `'posts'` on the server. Then `autopublish` will automatically send every post that it finds in the Mongo posts collection into a collection called `'posts'` on the client (assuming there is one).
+Hoe werkt dit? Stel je voor dat je een collectie genaamd `'berichten'` hebt op de server. Dan zal `autopublish` automatisch ieder bericht dat het vind in de Mongo berichten collectie sturen naarn een collectie genaamd `'berichten'` op de client (aangemonem dat er een is).
 
 So if you are using `autopublish`, you don't need to think about publications. Data is ubiquitous, and things are simple. Of course, there are obvious problems with having a complete copy of your app's database cached on every user's machine.
 
-For this reason, autopublish is only appropriate when you are starting out, and haven't yet thought about publications.
+Om deze reden, is autopublish alleen geschikt als je begint, and nog niet hebt nagedacht over pupliceren.
 
-### Publishing Full Collections
+### Publiceren van Volledige Collecties
 
-Once you remove `autopublish`, you'll quickly realize that all your data has vanished from the client. An easy way to get it back is to simply duplicate what autopublish does, and publish a collection in its entirety. For example:
+Als je `autopublish` eenmaal hebt verwijderd, zul je je snel realizeren dat al je data verdwenen is van de client. Een makkelijke manier om het terug te krijgen is om simpelweg te dupliceren wat autopublish doet, en een collectie volledig publiceren. bijvoorbeeld:
 
 ~~~js
 Meteor.publish('allPosts', function(){
@@ -149,13 +149,13 @@ Meteor.publish('allPosts', function(){
 });
 ~~~
 
-<%= diagram "fullcollection", "Publishing a full collection", "pull-center" %>
+<%= diagram "fullcollection", "Publiceren van een volledige collectie", "pull-center" %>
 
-We're still publishing full collections, but at least we now have control over which collections we publish or not. In this case, we're publishing the `Posts` collection but not `Comments`.
+We pucliceren nog steeds een volledige collectie, maar we hebben nu in ieder geval contole over het wel of niet publiceren van collecties. In dit geval, publiceren we de `Berichten` collectie maar niet `Commentaar`.
 
-### Publishing Partial Collections
+### Publiceer een Gedeeltelijke Collectie
 
-The next level of control is publishing only _part_ of a collection. For example only the posts that belong to a certain author:
+Het volgende level van controle is om alleen een _gedeelte_ van een collectie te publiceren. Bijvoorbeeld alleen de berichten die horen bij een bepaalde auteur:
 
 ~~~js
 Meteor.publish('somePosts', function(){
@@ -163,16 +163,17 @@ Meteor.publish('somePosts', function(){
 });
 ~~~
 
-<%= diagram "partialcollection", "Publishing a partial collection", "pull-center" %>
+<%= diagram "partialcollection", "Publiceer een gedeeltelijke collectie", "pull-center" %>
 
 <% note do %>
 
-### Behind The Scenes
+### Achter De Schermen
 
-If you've read the [Meteor publication documentation](http://docs.meteor.com/#publishandsubscribe), you were perhaps overwhelmed by talk of using `added()` and `ready()` to set attributes of records on the client, and struggled to square that with the Meteor apps that you've seen that never use those methods.
+Als je [Meteor publication documentation](http://docs.meteor.com/#publishandsubscribe) gelezen hebt, was je misschien overweldigd door gesprekken over `added()` en `ready()` om attributen van records op de client te zetten en worstelde met het gegeven dat de Meteor apps die je hebt gezien deze methodes nooit gebruiken.
 
-The reason is that Meteor provides a very important convenience: the `_publishCursor()` method. You've never seen that used either? Perhaps not directly, but if you return a [cursor](/chapter/meteor-vocabulary/) (i.e. `Posts.find({'author':'Tom'})`) in a publish function, that's exactly what Meteor is using.
+De reden hiervoor is dat Meteor je van een heel belangrijk gemak voorziet: de `_publishCursor()` methode. Je hebt dat nog nooit gebruikt zien worden? Misschien niet direct, maar als je een [cursor](/chapter/meteor-vocabulary/) (b.v. `Posts.find({'author':'Tom'})`) teruggeeft in een publiceer functie, dan is dat precies wat Meteor teruggeeft.
 
+Wanneer Meteor ziet dat de `somePosts` publicatie een cursor teruggeeft, 
 When Meteor sees that the `somePosts` publication has returned a cursor, it calls `_publishCursor()` to -- you guessed it -- publish that cursor automatically.
 
 Here's what `_publishCursor()` does:
