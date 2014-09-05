@@ -169,13 +169,13 @@ Meteor.publish('somePosts', function(){
 
 ### Achter De Schermen
 
-Als je [Meteor publication documentation](http://docs.meteor.com/#publishandsubscribe) gelezen hebt, was je misschien overweldigd door gesprekken over `added()` en `ready()` om attributen van records op de client te zetten en worstelde met het gegeven dat de Meteor apps die je hebt gezien deze methodes nooit gebruiken.
+Als je de [Meteor publication documentatie](http://docs.meteor.com/#publishandsubscribe) gelezen hebt, werd je misschien overweldigd door uitleg over `added()` en `ready()` om eigenschappen van records op de client te zetten. Mogelijk worstelde je ook met het gegeven dat de Meteor apps die je hebt gezien deze methodes nooit gebruiken.
 
-De reden hiervoor is dat Meteor je van een heel belangrijk gemak voorziet: de `_publishCursor()` methode. Je hebt dat nog nooit gebruikt zien worden? Misschien niet direct, maar als je een [cursor](/chapter/meteor-vocabulary/) (b.v. `Posts.find({'author':'Tom'})`) teruggeeft in een publiceer functie, dan is dat precies wat Meteor teruggeeft.
+De reden hiervoor is dat Meteor je van een heel belangrijk gemak voorziet: de `_publishCursor()` methode. Je hebt deze nog nooit in gebruik gezien? Misschien niet direct, maar als je een [cursor](/chapter/meteor-vocabulary/) (b.v. `Posts.find({'author':'Tom'})`) teruggeeft in een publiceerfunctie, dan is dat precies wat Meteor teruggeeft.
 
 Wanneer Meteor ziet dat de `somePosts` publicatie een cursor teruggeeft, roept het `_publishCursor()` aan om -- je raadde het al -- die cursor automatisch te publiceren.
 
-Hier is wat `_publishCursor()` doet:
+Dit is wat `_publishCursor()` doet:
 
 - Het controleert de naam van de collectie op de server.
 - Het haalt alle documenten op die overeenkomen met de cursor en stuur het naar een client-side collectie *met dezelfde naam*. (Het gebruikt `.added()` om dit te doen).
@@ -187,9 +187,9 @@ Dus in het bovenstaande voorbeeld, zijn we in staat om er zeker van te zijn dat 
 
 ### Publiceer Gedeeltelijke Eigenschappen
 
-We hebben laten zien hoe je alleen een gedeelte van onze berichten kunnen publiceren, maar we kunnen de cake nog dunner snijden! Laten we kijken hoe we alleen bepaalde *eigenschappen* kunnen publiceren.
+We hebben laten zien hoe je alleen een gedeelte van onze berichten kunnen publiceren, maar we kunnen nog een niveau dieper! Laten we kijken hoe we alleen bepaalde *eigenschappen* kunnen publiceren.
 
-Net als eert, gebruiken we `find()` om een cursor terug te geven, maar deze keer sluiten we bepaalde velden uit:
+Net als eerst, gebruiken we `find()` om een cursor terug te geven, maar deze keer sluiten we bepaalde velden uit:
 
 ~~~js
 Meteor.publish('allPosts', function(){
@@ -201,7 +201,7 @@ Meteor.publish('allPosts', function(){
 
 <%= diagram "partialproperties", "Publiceer gedeeltelijke eigenschappen", "pull-center" %>
 
-Uiteraard kunnen we beide technieken ook combineren. Bijvoorbeeld, als we alle berichten van Tom wilde teruggeven zonder hun datums, zouden we het volgende schrijven:
+Uiteraard kunnen we beide technieken ook combineren. Bijvoorbeeld, als we alle berichten van Tom willen teruggeven zonder de datum, zouden we het volgende schrijven:
 
 ~~~js
 Meteor.publish('allPosts', function(){
